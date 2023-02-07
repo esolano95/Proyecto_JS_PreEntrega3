@@ -174,10 +174,10 @@ for (let cuadro of array) {
                 <div class="quantity">
                 <img id="${
                     cuadro.id
-                }" class="chg-quantity update-cart " src="./Imagenes/up.png">
+                }" class="subir-cant update-cart " src="./Imagenes/up.png">
                 <img id="${
                     cuadro.id
-                }" class="chg-quantity-2 update-cart" src="./Imagenes/down.png">
+                }" class="bajar-cant update-cart" src="./Imagenes/down.png">
                 </div>
             </div>
             <div style="flex:1"><p class="cart-p">$${cuadro.subtotal.toFixed(
@@ -188,11 +188,11 @@ for (let cuadro of array) {
     cartRender.append(cart);
 }
 
-let add = document.getElementsByClassName("chg-quantity update-cart");
+let add = document.getElementsByClassName("subir-cant update-cart");
 for (let a of add) {
     a.addEventListener("click", addcart);
 }
-let remove = document.getElementsByClassName("chg-quantity-2 update-cart");
+let remove = document.getElementsByClassName("subir-cant-2 update-cart");
 for (let b of remove) {
     b.addEventListener("click", removeItem);
 }
