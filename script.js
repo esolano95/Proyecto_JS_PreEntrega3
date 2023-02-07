@@ -1,136 +1,308 @@
-// alert("Hola, bienvenido a Grace Foods! \n\nSomos una empresa familiar dedicada a la distribución de carnes hasta la puerta de su casa.");
+let arrayCarnes = [
+{
+    id: 1,
+    nombre: "Bistec",
+    categoria: "Carne_Res",
+    precio: 200,
+    img: "./Imagenes/Res/Bistec.jpg",
+},
+{
+    id: 2,
+    nombre: "Carne Molida",
+    categoria: "Carne_Res",
+    precio: 300,
+    img: "./Imagenes/Res/Carne Molida.jpg",
+},
+{
+    id: 3,
+    nombre: "Costilla",
+    categoria: "Carne_Res",
+    precio: 250,
+    img: "./Imagenes/Res/Costilla.jfif",
+},
+{
+    id: 4,
+    nombre: "Mano de Piedra",
+    categoria: "Carne_Res",
+    precio: 350,
+    img: "./Imagenes/Res/Mano de Piedra.jfif",
+},
+{
+    id: 5,
+    nombre: "Carne para Mechar",
+    categoria: "Carne_Res",
+    precio: 400,
+    img: "./Imagenes/Res/Carne para Mechar.jfif",
+},
+{
+    id: 6,
+    nombre: "Pechuga Deshuesada",
+    categoria: "Carne_Pollo",
+    precio: 300,
+    img: "./Imagenes/Pollo/Pechuga Deshuesada.jfif",
+},
+{
+    id: 7,
+    nombre: "Filete",
+    categoria: "Carne_Pollo",
+    precio: 350,
+    img: "./Imagenes/Pollo/Filete.jfif",
+},
+{
+    id: 8,
+    nombre: "Muslo",
+    categoria: "Carne_Pollo",
+    precio: 400,
+    img: "./Imagenes/Pollo/Muslo.jfif",
+},
+{
+    id: 9,
+    nombre: "Pechuga",
+    categoria: "Carne_Pollo",
+    precio: 450,
+    img: "./Imagenes/Pollo/Pechuga.jfif",
+},
+{
+    id: 10,
+    nombre: "Alas",
+    categoria: "Carne_Pollo",
+    precio: 500,
+    img: "./Imagenes/Pollo/Alas.jfif",
+},
+];
 
-// let persona = {nombre: "", direccion: "", telefono: ""}
+let cart= [];
+let cartJSON = "";
+let container = document.getElementById("hero");
+let cartRender = document.getElementById("cart-row");
+let modal = document.getElementById("myModal");
+let cartNav = document.getElementById("cart-nav");
+let botoncart= document.getElementById("cart-button");
+let total = document.getElementById("total");
+botoncart.addEventListener("click", mostrar);
+let containercartTotal = document.getElementById("containercartTotal");
+let totalFinal = "";
+let cantidad = "";
 
-// while(persona.nombre == ""){
-//     persona.nombre = prompt("Ingrese su nombre, por favor!");
-//     console.log(persona.nombre);
-// }
-// alert("Gracias por comunicarse con nosotros " + persona.nombre + ". 😁")
+renderizar(arrayCarnes);
+comprobar(cart);
 
-// let tipoCarne = 0;
-// while (tipoCarne === 0) {
-//     tipoCarne = Number(prompt("Actualmente contamos con una gran variedad de cortes de carne de Res y de Pollo. \nPor favor, escoja el tipo de carne que desea comprar (1 o 2). \n\n1. Res \n2. Pollo"));
+let res = document.getElementById("Carne_Res");
+let pollo = document.getElementById("Carne_Pollo");
 
-//     if (tipoCarne === 1) {
-//         console.log("Res");
-//     }else if (tipoCarne === 2) {
-//         console.log("Pollo");
-//     }else {
-//         alert("Opción inválida, inténtalo nuevamente!");
-//         tipoCarne = 0;
-//     }
-// }
+let inicio = document.getElementById("Inicio");
+let logo = document.getElementById("Logo");
 
-// //ARRAY DE RES
-// const arrayDeRes = [
-//     {
-//         id: 1,
-//         nombreProduct: 'Bistec',
-//         costo: 200,
-//     },
-//     {
-//         id: 2,
-//         nombreProduct: 'Costilla',
-//         costo: 250,
-//     },
-//     {
-//         id: 3,
-//         nombreProduct: 'Carne Molida',
-//         costo: 300,
-//     },
-//     {
-//         id: 4,
-//         nombreProduct: 'Mano de Piedra',
-//         costo: 350,
-//     },
-//     {
-//         id: 5,
-//         nombreProduct: 'Carne para Mechar',
-//         costo: 400,
-//     },
-// ];
+inicio.addEventListener("click", renderizarTodo);
+logo.addEventListener("click", renderizarTodo);
 
-// //ARRAY DE POLLO
-// const arrayDePollo = [
-//     { 
-//         id: 1,
-//         nombreProduct: 'Pechuga Deshuesada',
-//         costo: 300
-//     },
-//     {
-//         id: 2,
-//         nombreProduct: 'Filete',
-//         costo: 350
-//     },
-//     {
-//         id: 3,
-//         nombreProduct: 'Muslo',
-//         costo: 400
-//     },
-//     {
-//         id: 4,
-//         nombreProduct: 'Pechuga',
-//         costo: 450
-//     },
-//     {
-//         id: 5,
-//         nombreProduct: 'Trozos de Pechuga',
-//         costo: 500
-//     },
-//     {
-//         id: 6,
-//         nombreProduct: 'Alas',
-//         costo: 550
-//     },
-// ]
+res.addEventListener("click", filtro);
+pollo.addEventListener("click", filtro);
 
-// function seleccionProducto(tipoCarne) {
-//     let producto = 0;
-//     if (tipoCarne === 1) {
-//         producto = Number(prompt("Menú de carnes de Res 👇🏻 \n\nPor favor, seleccione un número válido! \n1. Bistec \n2. Costilla \n3. Carne Molida \n4. Mano de Piedra \n5. Carne para Mechar"));
-        
-//         arrayDeRes;
-        
-//         const buscarRes = arrayDeRes.find((el) => el.id == producto)
-//         let cantidad = obtenerCantidad(buscarRes);
-//         obtenerTotal(cantidad, buscarRes);
+function comprobar() {
+    if (localStorage.getItem("cart")) {
+        cart= JSON.parse(localStorage.getItem("cart"));
+        mostrarCart(cart);
+        totalRender(cart);
+    } else {
+        totalRenderVacio(cart);
+    }
+    }
 
-//     }else if (tipoCarne === 2){
-//         producto = Number(prompt("Menú de carnes de Pollo 👇🏻 \n\nPor favor, seleccione un número válido! \n1. Pechuga Deshuesada \n2. Filete \n3. Muslo \n4. Pechuga \n5. Trozos de Pechuga \n6. Alas"));
-        
-//         arrayDePollo;
+function filtro(e) {
+e.preventDefault();
+console.log(e.target.id);
+let categoriaFiltrado = arrayCarnes.filter(
+    (cuadro) => cuadro.categoria == e.target.id
+);
+renderizar(categoriaFiltrado);
+}
 
-//         const buscarPollo = arrayDePollo.find((el) => el.id == producto)
-//         let cantidad = obtenerCantidad(buscarPollo);
-//         obtenerTotal(cantidad, buscarPollo);
+function renderizarTodo(e) {
+e.preventDefault();
+renderizar(arrayCarnes);
+}
 
-//     }
+function renderizar(array) {
+container.innerHTML = "";
+for (const cuadro of array) {
+    let tarjetaBody = document.createElement("div");
 
-//     while(persona.direccion == ""){
-//         persona.direccion = prompt("Nos gustaria obtener la dirección en la que desea que se realice la entrega. \nPor favor, ingrese su dirección lo más especifica posible! 🗺️");
-//         console.log(persona.direccion);
-//     }
+    tarjetaBody.className = "tarjeta-body";
+    tarjetaBody.innerHTML = `
+        <div class="card">
+            <div class="card-img">
+                <img src="${cuadro.img}" alt="Card image cap">
+            </div>
+            <h5 class="card-title">${cuadro.nombre}</h5>
+            <div class="cardBody">
+                <h6 class= "precio"><strong>Precio: ¢${cuadro.precio.toFixed(
+                    2
+                )}</strong></h6>
+                <button id="${
+                    cuadro.id
+                }"  class="btn btn-secondary me-md-2">Comprar</button>
+            </div>
+        </div>
+        `;
+    container.append(tarjetaBody);
+}
 
-//     while(persona.telefono == ""){
-//         persona.telefono = Number(prompt("Para finalizar, bríndenos un número telefónico! 📲📞"));
-//         console.log(persona.telefono);
-//     }
-//     alert("Gracias por comprar con nosotros " + persona.nombre + "! \n\nSu producto se entregará en la dirección '" + persona.direccion + "'.\nPara contactarnos con usted tenemos el número " + persona.telefono + "." + "\n\nPara nosotros ha sido un placer atenderle. ¡Vuelva pronto! 😁👍🏻");
-// }
+let comprar = document.getElementsByClassName("btn btn-secondary me-md-2");
 
-// function obtenerCantidad(producto) {
-//     let cant = Number(prompt("¿Cuántas unidades desea?"));
-//     alert("Usted ha escogido " + cant + " unidades de " + producto.nombreProduct + ". \n\nTome en cuenta que el costo de nuestros productos NO incluyen el IVA (13%).");
-//     return cant;
-// }
+for (boton of comprar) {
+    boton.addEventListener("click", addcart);
+}
+}
 
-// function obtenerTotal(cant, product) {
-//     const iva = 0.13;
-//     let subTotal = product.costo * cant;
-//     let subTotalNeto = subTotal * iva;
-//     let total = subTotal + subTotalNeto;
-//     alert("Costo de " + product.nombreProduct + ": ¢" + product.costo + "\nCosto por cantidad: ¢" + subTotal + " \nCosto total con IVA: ¢" + total);
-// }
+function mostrarCart(array) {
+cartRender.innerHTML = "";
+for (let cuadro of array) {
+    let cart = document.createElement("div");
+    cart.className = "cart-render";
+    cart.innerHTML = `
+        <div class="cart-row">
+            <div  style="flex:1"><img class="row-image" src="${
+                cuadro.img
+            }"></div>
+            <div  style="flex:2"><p class="cart-p">${cuadro.nombre}</p></div>
+            <div  style="flex:1"><p class="cart-p">$${cuadro.precio.toFixed(
+                2
+            )}</p></div>
+            <div style="flex:1">
+                <p class="quantity">${cuadro.cantidad}</p>
+                <div class="quantity">
+                <img id="${
+                    cuadro.id
+                }" class="chg-quantity update-cart " src="./Imagenes/up.png">
+                <img id="${
+                    cuadro.id
+                }" class="chg-quantity-2 update-cart" src="./Imagenes/down.png">
+                </div>
+            </div>
+            <div style="flex:1"><p class="cart-p">$${cuadro.subtotal.toFixed(
+                2
+            )}</p></div>
+        </div>
+        `;
+    cartRender.append(cart);
+}
 
-// seleccionProducto(tipoCarne);
+let add = document.getElementsByClassName("chg-quantity update-cart");
+for (let a of add) {
+    a.addEventListener("click", addcart);
+}
+let remove = document.getElementsByClassName("chg-quantity-2 update-cart");
+for (let b of remove) {
+    b.addEventListener("click", removeItem);
+}
+}
+
+function addcart(e) {
+let productoBuscado = arrayCarnes.find((cuadro) => cuadro.id == e.target.id);
+
+let indexCuadro = cart.findIndex(
+    (cuadro) => cuadro.id == productoBuscado.id
+);
+
+if (indexCuadro != -1) {
+    cart[indexCuadro].cantidad++;
+    cart[indexCuadro].subtotal =
+    cart[indexCuadro].precio * cart[indexCuadro].cantidad;
+    cartJSON = JSON.stringify(cart);
+    localStorage.setItem("cart", cartJSON);
+} else {
+    cart.push({
+    id: productoBuscado.id,
+    nombre: productoBuscado.nombre,
+    categoria: productoBuscado.categoria,
+    precio: productoBuscado.precio,
+    img: productoBuscado.img,
+    cantidad: 1,
+    subtotal: productoBuscado.precio,
+    });
+    cartJSON = JSON.stringify(cart);
+    localStorage.setItem("cart", cartJSON);
+}
+mostrarCart(cart);
+totalRender(cart);
+}
+
+function removeItem(e) {
+let productoBuscado = arrayCarnes.find((cuadro) => cuadro.id == e.target.id);
+let indexCuadro = cart.findIndex(
+    (cuadro) => cuadro.id == productoBuscado.id
+);
+
+if (indexCuadro != -1) {
+    if (cart[indexCuadro].cantidad >= 2) {
+    cart[indexCuadro].cantidad--;
+    cart[indexCuadro].subtotal =
+        cart[indexCuadro].subtotal - cart[indexCuadro].precio;
+    cartJSON = JSON.stringify(cart);
+    localStorage.setItem("cart", cartJSON);
+    } else {
+    cart.splice(indexCuadro, 1);
+    cartJSON = JSON.stringify(cart);
+    localStorage.setItem("cart", cartJSON);
+    }
+}
+totalFinal = cart.reduce((a, b) => a + b.subtotal, 0);
+cantidad = cart.reduce((a, b) => a + b.cantidad, 0);
+mostrarCart(cart);
+totalRender(cart);
+}
+
+function totalRender(array) {
+totalFinal = cart.reduce((a, b) => a + b.subtotal, 0);
+cantidad = cart.reduce((a, b) => a + b.cantidad, 0);
+total.innerHTML = "";
+let totalResumen = document.createElement("div");
+totalResumen.className = "total";
+totalResumen.innerHTML = `
+    <span class="close">&times;</span> 
+    <h5 class="totalh5" >Total:<strong> ¢${totalFinal.toFixed(
+        2
+    )}</strong></h5>
+    `;
+total.append(totalResumen);
+
+let span = document.getElementsByClassName("close")[0];
+span.onclick = function () {
+    modal.style.display = "none";
+};
+
+cartNav.innerHTML = "";
+if (array.lenght != 0) {
+    let parrafo = document.createElement("div");
+    parrafo.className = "cart-total";
+    parrafo.innerHTML = `<p>${cantidad}</p>`;
+    cartNav.append(parrafo);
+} else {
+    let parrafo = document.createElement("div");
+    parrafo.className = "cart-total";
+    parrafo.innerHTML = `<p>0</p>`;
+    cartNav.append(parrafo);
+}
+}
+
+function totalRenderVacio(array) {
+total.innerHTML = "";
+let totalResumen = document.createElement("div");
+totalResumen.className = "total";
+totalResumen.innerHTML = `
+        <span class="close">&times;</span> 
+        <h5 class="totalh5">Productos: <strong> 0 </strong></h5>
+        <h5 class="totalh5">Total:<strong> ¢0.00 </strong></h5>
+        `;
+total.append(totalResumen);
+cartNav.innerHTML = "";
+let parrafo = document.createElement("div");
+parrafo.className = "cart-total";
+parrafo.innerHTML = `<p>0</p>`;
+cartNav.append(parrafo);
+}
+
+function mostrar(e) {
+modal.style.display = "block";
+}
