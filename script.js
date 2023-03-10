@@ -1,3 +1,21 @@
+class nuevoUsuario {
+    constructor (nombreCliente, apellido){
+        this.nombreCliente = nombreCliente;
+        this.apellido = apellido;
+    }
+}
+
+function mostrarInfo(){
+	let nombre = document.getElementById("nombre").value;
+	let apellido = document.getElementById("apellido").value;
+
+	let nombreApellido = document.getElementById("nombreApellido");
+	nombreApellido.innerHTML = "Bienvenido " + nombre + " " + apellido + ", gracias por preferirnos! <br> Escoja los productos de nuestra cartelera 😁";
+
+	document.getElementById("datos").style.display = "none";
+	document.getElementById("usuario").style.display = "block";
+}
+
 let arrayCarnes = [
     {
         id: 1,
@@ -98,7 +116,7 @@ let arrayCarnes = [
     
     res.addEventListener("click", filtro);
     pollo.addEventListener("click", filtro);
-    
+
     function comprobar() {
         if (localStorage.getItem("cart")) {
             cart= JSON.parse(localStorage.getItem("cart"));
