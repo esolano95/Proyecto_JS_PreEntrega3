@@ -12,8 +12,8 @@ function mostrarInfo(){
 	let nombreApellido = document.getElementById("nombreApellido");
 	nombreApellido.innerHTML = "Bienvenido " + nombre + " " + apellido + ", gracias por preferirnos! <br> Escoja los productos de nuestra cartelera 😁";
 
-	document.getElementById("datos").style.display = "none";
-	document.getElementById("usuario").style.display = "block";
+	document.getElementById("datos").style.visibility = "hidden";
+	document.getElementById("usuario").style.visibility = "visible";
 }
 
 let arrayCarnes = [
@@ -88,6 +88,23 @@ let arrayCarnes = [
         img: "./Imagenes/Pollo/Alas.jfif",
     },
     ];
+
+    const carnesJSON = JSON.stringify(arrayCarnes);
+
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        body: carnesJSON,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(data);
+      })
+      .catch(error => {
+        console.error(error);
+      });
 
     let cart= [];
     let cartJSON = "";
@@ -324,7 +341,7 @@ let arrayCarnes = [
     }
     }
     
-    function totalRenderVacio(array) {
+    function totalRenderVacio(arrayCarnes) {
     total.innerHTML = "";
     let totalResumen = document.createElement("div");
     totalResumen.className = "total";

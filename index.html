@@ -7,7 +7,6 @@
     <meta name="keywords" content="carnes, pollo, res">
     <title>Grace Foods</title>
     <link rel="shortcut icon" href="./Imagenes/Grace_Foods.jpg">
-    <title>Grace Food</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous"/>
     <link rel="shortcut icon" type="image/x-icon" href="../imagenes/favicondef.ico"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -26,7 +25,6 @@
       <div class="logo">
           <a id="Logo" href="#"> <img src="./Imagenes/Grace_Foods.jpg" alt="Logo" height="250" width="250"/></a>
       </div>
-    </div>
 
     <div id="datos">
         <form>
@@ -36,7 +34,7 @@
           <button type="button" onclick="mostrarInfo()" style="margin-left: 1rem;">Aceptar</button>
         </form>
       </div>
-      <div id="usuario" style="display:none">
+      <div id="usuario" style="visibility:hidden">
         <p id="nombreApellido" class="resultado"></p>
     </div>
 
@@ -78,9 +76,7 @@
                 <div style="flex: 1"></div>
                 <div style="flex: 2"><strong>Producto</strong></div>
                 <div style="flex: 1"><strong>Precio</strong></div>
-                <div style="flex: 1">
-                  <strong>Cantidad</strong>
-                </div>
+                <div style="flex: 1"><strong>Cantidad</strong></div>
                 <div class="tabla" style="flex: 1"><strong>Total</strong></div>
               </div>
               <div id="cart-row"></div>
